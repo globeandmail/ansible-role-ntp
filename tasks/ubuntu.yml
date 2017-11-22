@@ -1,0 +1,14 @@
+---
+- name: Install NTP
+  apt:
+    name: 'ntp'
+    state: 'present'
+
+- name: Install /etc/ntp.conf
+  copy:
+    src: "{{ ansible_role_ntp_cfg_path }}"
+    dest: "/etc/ntp.conf"
+    mode: 0644
+    owner: 'root'
+    group: 'root'
+  when: ansible_role_ntp_cfg_path is defined
