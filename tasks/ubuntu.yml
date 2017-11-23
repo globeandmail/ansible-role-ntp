@@ -16,3 +16,11 @@
     owner: 'root'
     group: 'root'
   when: ansible_role_ntp_cfg_path is defined
+  register: ansible_role_ntp_cfg_installed
+
+- name: Enable & (re)start NTP
+  service:
+    name: 'ntp'
+    state: 'restarted'
+    enabled: 'yes'
+  when: ansible_role_ntp_cfg_installed.changed
