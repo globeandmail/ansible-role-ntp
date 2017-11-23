@@ -1,12 +1,9 @@
 ---
-- name: Update apt cache
-  apt:
-    update_cache: 'yes'
-
 - name: Install NTP
   apt:
     name: 'ntp'
     state: 'present'
+    update_cache: 'yes'
 
 - name: Install /etc/ntp.conf
   copy:
